@@ -14,8 +14,6 @@
 		E7793A501862D99700D4BB1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7793A4F1862D99700D4BB1B /* main.m */; };
 		E7793A541862D99700D4BB1B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7793A531862D99700D4BB1B /* AppDelegate.m */; };
 		E7793A571862D99700D4BB1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7793A551862D99700D4BB1B /* Main.storyboard */; };
-		E7793A5A1862D99700D4BB1B /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7793A591862D99700D4BB1B /* FirstViewController.m */; };
-		E7793A5D1862D99700D4BB1B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7793A5C1862D99700D4BB1B /* SecondViewController.m */; };
 		E7793A5F1862D99700D4BB1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7793A5E1862D99700D4BB1B /* Images.xcassets */; };
 		E7793A661862D99700D4BB1B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7793A651862D99700D4BB1B /* XCTest.framework */; };
 		E7793A671862D99700D4BB1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7793A431862D99700D4BB1B /* Foundation.framework */; };
@@ -39,6 +37,10 @@
 		E7793AAB1862EA9500D4BB1B /* NSString_RegEx.m in Sources */ = {isa = PBXBuildFile; fileRef = E7793AA81862EA9500D4BB1B /* NSString_RegEx.m */; };
 		E7793AAC1862EA9500D4BB1B /* SQC_StringUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E7793AAA1862EA9500D4BB1B /* SQC_StringUtility.m */; };
 		E7793AC018642A1E00D4BB1B /* HuaFeiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7793ABF18642A1E00D4BB1B /* HuaFeiViewController.m */; };
+		E7E2E0DC1865599B00B61F9C /* ZhiFuBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2E0DB1865599B00B61F9C /* ZhiFuBaoViewController.m */; };
+		E7E2E0DF18655CFA00B61F9C /* huafeiBack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7E2E0DE18655CFA00B61F9C /* huafeiBack.jpg */; };
+		E7E2E0E118655E7200B61F9C /* zhifubaoBack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7E2E0E018655E7200B61F9C /* zhifubaoBack.jpg */; };
+		E7E2E0E3186560FC00B61F9C /* yaoyiyao.png in Resources */ = {isa = PBXBuildFile; fileRef = E7E2E0E2186560FC00B61F9C /* yaoyiyao.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,10 +65,6 @@
 		E7793A521862D99700D4BB1B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E7793A531862D99700D4BB1B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E7793A561862D99700D4BB1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E7793A581862D99700D4BB1B /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		E7793A591862D99700D4BB1B /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		E7793A5B1862D99700D4BB1B /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		E7793A5C1862D99700D4BB1B /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		E7793A5E1862D99700D4BB1B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E7793A641862D99700D4BB1B /* SQCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SQCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7793A651862D99700D4BB1B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -98,6 +96,11 @@
 		E7793AAA1862EA9500D4BB1B /* SQC_StringUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQC_StringUtility.m; sourceTree = "<group>"; };
 		E7793ABE18642A1E00D4BB1B /* HuaFeiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HuaFeiViewController.h; path = Controller/HuaFeiViewController.h; sourceTree = "<group>"; };
 		E7793ABF18642A1E00D4BB1B /* HuaFeiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HuaFeiViewController.m; path = Controller/HuaFeiViewController.m; sourceTree = "<group>"; };
+		E7E2E0DA1865599B00B61F9C /* ZhiFuBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZhiFuBaoViewController.h; path = Controller/ZhiFuBaoViewController.h; sourceTree = "<group>"; };
+		E7E2E0DB1865599B00B61F9C /* ZhiFuBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZhiFuBaoViewController.m; path = Controller/ZhiFuBaoViewController.m; sourceTree = "<group>"; };
+		E7E2E0DE18655CFA00B61F9C /* huafeiBack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = huafeiBack.jpg; sourceTree = "<group>"; };
+		E7E2E0E018655E7200B61F9C /* zhifubaoBack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = zhifubaoBack.jpg; sourceTree = "<group>"; };
+		E7E2E0E2186560FC00B61F9C /* yaoyiyao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yaoyiyao.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,10 +166,6 @@
 				E7793A521862D99700D4BB1B /* AppDelegate.h */,
 				E7793A531862D99700D4BB1B /* AppDelegate.m */,
 				E7793A551862D99700D4BB1B /* Main.storyboard */,
-				E7793A581862D99700D4BB1B /* FirstViewController.h */,
-				E7793A591862D99700D4BB1B /* FirstViewController.m */,
-				E7793A5B1862D99700D4BB1B /* SecondViewController.h */,
-				E7793A5C1862D99700D4BB1B /* SecondViewController.m */,
 				E7793A5E1862D99700D4BB1B /* Images.xcassets */,
 				E7793A4A1862D99700D4BB1B /* Supporting Files */,
 			);
@@ -176,6 +175,7 @@
 		E7793A4A1862D99700D4BB1B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E7E2E0DD18655CFA00B61F9C /* Images */,
 				E7793A4B1862D99700D4BB1B /* SQC-Info.plist */,
 				E7793A4C1862D99700D4BB1B /* InfoPlist.strings */,
 				E7793A4F1862D99700D4BB1B /* main.m */,
@@ -277,8 +277,20 @@
 			children = (
 				E7793ABE18642A1E00D4BB1B /* HuaFeiViewController.h */,
 				E7793ABF18642A1E00D4BB1B /* HuaFeiViewController.m */,
+				E7E2E0DA1865599B00B61F9C /* ZhiFuBaoViewController.h */,
+				E7E2E0DB1865599B00B61F9C /* ZhiFuBaoViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		E7E2E0DD18655CFA00B61F9C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E7E2E0E2186560FC00B61F9C /* yaoyiyao.png */,
+				E7E2E0DE18655CFA00B61F9C /* huafeiBack.jpg */,
+				E7E2E0E018655E7200B61F9C /* zhifubaoBack.jpg */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,12 +372,15 @@
 				E7793A8B1862DA3E00D4BB1B /* HeaderImage.png in Resources */,
 				E7793A5F1862D99700D4BB1B /* Images.xcassets in Resources */,
 				E7793A941862DD7700D4BB1B /* SQCLoginViewController.xib in Resources */,
+				E7E2E0E3186560FC00B61F9C /* yaoyiyao.png in Resources */,
 				E7793A8A1862DA3E00D4BB1B /* ForkImage.png in Resources */,
 				E7793A4E1862D99700D4BB1B /* InfoPlist.strings in Resources */,
 				E7793AA01862E7B500D4BB1B /* RegisterBackground.png in Resources */,
+				E7E2E0E118655E7200B61F9C /* zhifubaoBack.jpg in Resources */,
 				E7793A9C1862DDA300D4BB1B /* LoginAndRegister.png in Resources */,
 				E7793A9E1862E4A000D4BB1B /* loginBackground.png in Resources */,
 				E7793A571862D99700D4BB1B /* Main.storyboard in Resources */,
+				E7E2E0DF18655CFA00B61F9C /* huafeiBack.jpg in Resources */,
 				E7793AA51862E81200D4BB1B /* SQCRegisterViewController.xib in Resources */,
 				E7793A891862DA3E00D4BB1B /* CheckMarkWhite.png in Resources */,
 				E7793A8C1862DA3E00D4BB1B /* Toronto, ON.jpg in Resources */,
@@ -387,13 +402,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7793A5D1862D99700D4BB1B /* SecondViewController.m in Sources */,
 				E7793AAC1862EA9500D4BB1B /* SQC_StringUtility.m in Sources */,
 				E7793AA41862E81200D4BB1B /* SQCRegisterViewController.m in Sources */,
+				E7E2E0DC1865599B00B61F9C /* ZhiFuBaoViewController.m in Sources */,
 				E7793A8D1862DA3E00D4BB1B /* MYBlurIntroductionView.m in Sources */,
 				E7793A931862DD7700D4BB1B /* SQCLoginViewController.m in Sources */,
 				E7793A541862D99700D4BB1B /* AppDelegate.m in Sources */,
-				E7793A5A1862D99700D4BB1B /* FirstViewController.m in Sources */,
 				E7793A8E1862DA3E00D4BB1B /* MYIntroductionPanel.m in Sources */,
 				E7793AAB1862EA9500D4BB1B /* NSString_RegEx.m in Sources */,
 				E7793A501862D99700D4BB1B /* main.m in Sources */,

@@ -1,18 +1,18 @@
 //
-//  HuaFeiViewController.m
+//  ZhiFuBaoViewController.m
 //  SQC
 //
-//  Created by sun qichao on 13-12-20.
+//  Created by sun qichao on 13-12-21.
 //  Copyright (c) 2013年 sun qichao. All rights reserved.
 //
 
-#import "HuaFeiViewController.h"
+#import "ZhiFuBaoViewController.h"
 
-@interface HuaFeiViewController ()
+@interface ZhiFuBaoViewController ()
 
 @end
 
-@implementation HuaFeiViewController
+@implementation ZhiFuBaoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,10 +27,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.zhifubaoButton.layer.cornerRadius = 30.f;
     
-    self.changButton.layer.cornerRadius = 60.f;
-    
-    self.pointsButton.layer.cornerRadius = 60.f;
+    self.pointsButton.layer.cornerRadius = 30.f;
     
     self.yaoyiyao.layer.cornerRadius = 35.f;
 
