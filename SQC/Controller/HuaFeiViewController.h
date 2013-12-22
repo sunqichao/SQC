@@ -10,10 +10,16 @@
 
 @interface HuaFeiViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *changButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *pointsButton;
 
 @property (weak, nonatomic) IBOutlet UIImageView *yaoyiyao;
+
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+
+
+
 @end

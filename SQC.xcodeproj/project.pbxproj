@@ -37,6 +37,18 @@
 		E7793AAB1862EA9500D4BB1B /* NSString_RegEx.m in Sources */ = {isa = PBXBuildFile; fileRef = E7793AA81862EA9500D4BB1B /* NSString_RegEx.m */; };
 		E7793AAC1862EA9500D4BB1B /* SQC_StringUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E7793AAA1862EA9500D4BB1B /* SQC_StringUtility.m */; };
 		E7793AC018642A1E00D4BB1B /* HuaFeiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7793ABF18642A1E00D4BB1B /* HuaFeiViewController.m */; };
+		E7802C7418675EBC00F39525 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E7802C7118675EBC00F39525 /* SVProgressHUD.bundle */; };
+		E7802C7518675EBC00F39525 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E7802C7318675EBC00F39525 /* SVProgressHUD.m */; };
+		E7802C79186760A800F39525 /* SQCAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E7802C78186760A800F39525 /* SQCAPI.m */; };
+		E7802C8A1867618C00F39525 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7802C881867618C00F39525 /* libYouMi.a */; };
+		E7802C8C1867621C00F39525 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7802C8B1867621C00F39525 /* SystemConfiguration.framework */; };
+		E7802C8E1867622A00F39525 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7802C8D1867622A00F39525 /* CFNetwork.framework */; };
+		E7802C901867623700F39525 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7802C8F1867623700F39525 /* QuartzCore.framework */; };
+		E7802C921867625000F39525 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E7802C911867625000F39525 /* libsqlite3.dylib */; };
+		E7802C951867625000F39525 /* SQC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7802C931867625000F39525 /* SQC.xcdatamodeld */; };
+		E7802C971867625000F39525 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7802C961867625000F39525 /* CoreData.framework */; };
+		E7802CA11867625000F39525 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E7802CA01867625000F39525 /* UserInfo.m */; };
+		E7802CA41867625000F39525 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E7802CA31867625000F39525 /* UserInfo.m */; };
 		E7E2E0DC1865599B00B61F9C /* ZhiFuBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E2E0DB1865599B00B61F9C /* ZhiFuBaoViewController.m */; };
 		E7E2E0DF18655CFA00B61F9C /* huafeiBack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7E2E0DE18655CFA00B61F9C /* huafeiBack.jpg */; };
 		E7E2E0E118655E7200B61F9C /* zhifubaoBack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7E2E0E018655E7200B61F9C /* zhifubaoBack.jpg */; };
@@ -96,6 +108,30 @@
 		E7793AAA1862EA9500D4BB1B /* SQC_StringUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQC_StringUtility.m; sourceTree = "<group>"; };
 		E7793ABE18642A1E00D4BB1B /* HuaFeiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HuaFeiViewController.h; path = Controller/HuaFeiViewController.h; sourceTree = "<group>"; };
 		E7793ABF18642A1E00D4BB1B /* HuaFeiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HuaFeiViewController.m; path = Controller/HuaFeiViewController.m; sourceTree = "<group>"; };
+		E7802C6F18675D0E00F39525 /* SQCDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQCDefine.h; sourceTree = "<group>"; };
+		E7802C7118675EBC00F39525 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		E7802C7218675EBC00F39525 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		E7802C7318675EBC00F39525 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		E7802C77186760A800F39525 /* SQCAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQCAPI.h; path = SQCAPI/SQCAPI.h; sourceTree = "<group>"; };
+		E7802C78186760A800F39525 /* SQCAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SQCAPI.m; path = SQCAPI/SQCAPI.m; sourceTree = "<group>"; };
+		E7802C811867618C00F39525 /* YouMiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiConfig.h; sourceTree = "<group>"; };
+		E7802C821867618C00F39525 /* YouMiDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDelegateProtocol.h; sourceTree = "<group>"; };
+		E7802C831867618C00F39525 /* YouMiPointsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiPointsManager.h; sourceTree = "<group>"; };
+		E7802C841867618C00F39525 /* YouMiSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpot.h; sourceTree = "<group>"; };
+		E7802C851867618C00F39525 /* YouMiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiView.h; sourceTree = "<group>"; };
+		E7802C861867618C00F39525 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
+		E7802C871867618C00F39525 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
+		E7802C881867618C00F39525 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
+		E7802C8B1867621C00F39525 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E7802C8D1867622A00F39525 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E7802C8F1867623700F39525 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E7802C911867625000F39525 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		E7802C941867625000F39525 /* SQC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SQC.xcdatamodel; sourceTree = "<group>"; };
+		E7802C961867625000F39525 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E7802C9F1867625000F39525 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfo.h; path = CoreData/UserInfo.h; sourceTree = "<group>"; };
+		E7802CA01867625000F39525 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfo.m; path = CoreData/UserInfo.m; sourceTree = "<group>"; };
+		E7802CA21867625000F39525 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfo.h; path = CoreData/UserInfo.h; sourceTree = "<group>"; };
+		E7802CA31867625000F39525 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfo.m; path = CoreData/UserInfo.m; sourceTree = "<group>"; };
 		E7E2E0DA1865599B00B61F9C /* ZhiFuBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZhiFuBaoViewController.h; path = Controller/ZhiFuBaoViewController.h; sourceTree = "<group>"; };
 		E7E2E0DB1865599B00B61F9C /* ZhiFuBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZhiFuBaoViewController.m; path = Controller/ZhiFuBaoViewController.m; sourceTree = "<group>"; };
 		E7E2E0DE18655CFA00B61F9C /* huafeiBack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = huafeiBack.jpg; sourceTree = "<group>"; };
@@ -108,9 +144,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7802C971867625000F39525 /* CoreData.framework in Frameworks */,
+				E7802C921867625000F39525 /* libsqlite3.dylib in Frameworks */,
+				E7802C901867623700F39525 /* QuartzCore.framework in Frameworks */,
+				E7802C8E1867622A00F39525 /* CFNetwork.framework in Frameworks */,
+				E7802C8C1867621C00F39525 /* SystemConfiguration.framework in Frameworks */,
 				E7793A461862D99700D4BB1B /* CoreGraphics.framework in Frameworks */,
 				E7793A481862D99700D4BB1B /* UIKit.framework in Frameworks */,
 				E7793A441862D99700D4BB1B /* Foundation.framework in Frameworks */,
+				E7802C8A1867618C00F39525 /* libYouMi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +191,11 @@
 		E7793A421862D99700D4BB1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7802C961867625000F39525 /* CoreData.framework */,
+				E7802C911867625000F39525 /* libsqlite3.dylib */,
+				E7802C8F1867623700F39525 /* QuartzCore.framework */,
+				E7802C8D1867622A00F39525 /* CFNetwork.framework */,
+				E7802C8B1867621C00F39525 /* SystemConfiguration.framework */,
 				E7793A431862D99700D4BB1B /* Foundation.framework */,
 				E7793A451862D99700D4BB1B /* CoreGraphics.framework */,
 				E7793A471862D99700D4BB1B /* UIKit.framework */,
@@ -160,12 +207,18 @@
 		E7793A491862D99700D4BB1B /* SQC */ = {
 			isa = PBXGroup;
 			children = (
+				E7802C981867625000F39525 /* CoreData */,
+				E7802C7A1867614600F39525 /* Library */,
+				E7802C761867608800F39525 /* SQCAPI */,
 				E7793ABD1864268600D4BB1B /* Controller */,
 				E7793AA61862EA9500D4BB1B /* SQCUtilies */,
 				E7793A7B1862DA3E00D4BB1B /* SQCCommon */,
 				E7793A521862D99700D4BB1B /* AppDelegate.h */,
 				E7793A531862D99700D4BB1B /* AppDelegate.m */,
 				E7793A551862D99700D4BB1B /* Main.storyboard */,
+				E7802C931867625000F39525 /* SQC.xcdatamodeld */,
+				E7802CA21867625000F39525 /* UserInfo.h */,
+				E7802CA31867625000F39525 /* UserInfo.m */,
 				E7793A5E1862D99700D4BB1B /* Images.xcassets */,
 				E7793A4A1862D99700D4BB1B /* Supporting Files */,
 			);
@@ -205,6 +258,7 @@
 		E7793A7B1862DA3E00D4BB1B /* SQCCommon */ = {
 			isa = PBXGroup;
 			children = (
+				E7802C7018675EBC00F39525 /* SVProgressHUD */,
 				E7793A8F1862DD4400D4BB1B /* LoginAndRegister */,
 				E7793A7C1862DA3E00D4BB1B /* MYBlurIntroductionView */,
 			);
@@ -268,6 +322,7 @@
 				E7793AA81862EA9500D4BB1B /* NSString_RegEx.m */,
 				E7793AA91862EA9500D4BB1B /* SQC_StringUtility.h */,
 				E7793AAA1862EA9500D4BB1B /* SQC_StringUtility.m */,
+				E7802C6F18675D0E00F39525 /* SQCDefine.h */,
 			);
 			path = SQCUtilies;
 			sourceTree = "<group>";
@@ -281,6 +336,74 @@
 				E7E2E0DB1865599B00B61F9C /* ZhiFuBaoViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		E7802C7018675EBC00F39525 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				E7802C7118675EBC00F39525 /* SVProgressHUD.bundle */,
+				E7802C7218675EBC00F39525 /* SVProgressHUD.h */,
+				E7802C7318675EBC00F39525 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		E7802C761867608800F39525 /* SQCAPI */ = {
+			isa = PBXGroup;
+			children = (
+				E7802C77186760A800F39525 /* SQCAPI.h */,
+				E7802C78186760A800F39525 /* SQCAPI.m */,
+			);
+			name = SQCAPI;
+			sourceTree = "<group>";
+		};
+		E7802C7A1867614600F39525 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				E7802C7B1867618C00F39525 /* YouMi_sdk_501 */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		E7802C7B1867618C00F39525 /* YouMi_sdk_501 */ = {
+			isa = PBXGroup;
+			children = (
+				E7802C7F1867618C00F39525 /* lib */,
+			);
+			name = YouMi_sdk_501;
+			path = Library/YouMi_sdk_501;
+			sourceTree = "<group>";
+		};
+		E7802C7F1867618C00F39525 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				E7802C801867618C00F39525 /* include */,
+				E7802C881867618C00F39525 /* libYouMi.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		E7802C801867618C00F39525 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				E7802C811867618C00F39525 /* YouMiConfig.h */,
+				E7802C821867618C00F39525 /* YouMiDelegateProtocol.h */,
+				E7802C831867618C00F39525 /* YouMiPointsManager.h */,
+				E7802C841867618C00F39525 /* YouMiSpot.h */,
+				E7802C851867618C00F39525 /* YouMiView.h */,
+				E7802C861867618C00F39525 /* YouMiWall.h */,
+				E7802C871867618C00F39525 /* YouMiWallAppModel.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		E7802C981867625000F39525 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E7802C9F1867625000F39525 /* UserInfo.h */,
+				E7802CA01867625000F39525 /* UserInfo.m */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		E7E2E0DD18655CFA00B61F9C /* Images */ = {
@@ -380,6 +503,7 @@
 				E7793A9C1862DDA300D4BB1B /* LoginAndRegister.png in Resources */,
 				E7793A9E1862E4A000D4BB1B /* loginBackground.png in Resources */,
 				E7793A571862D99700D4BB1B /* Main.storyboard in Resources */,
+				E7802C7418675EBC00F39525 /* SVProgressHUD.bundle in Resources */,
 				E7E2E0DF18655CFA00B61F9C /* huafeiBack.jpg in Resources */,
 				E7793AA51862E81200D4BB1B /* SQCRegisterViewController.xib in Resources */,
 				E7793A891862DA3E00D4BB1B /* CheckMarkWhite.png in Resources */,
@@ -402,16 +526,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7802CA41867625000F39525 /* UserInfo.m in Sources */,
+				E7802C79186760A800F39525 /* SQCAPI.m in Sources */,
 				E7793AAC1862EA9500D4BB1B /* SQC_StringUtility.m in Sources */,
 				E7793AA41862E81200D4BB1B /* SQCRegisterViewController.m in Sources */,
+				E7802C951867625000F39525 /* SQC.xcdatamodeld in Sources */,
 				E7E2E0DC1865599B00B61F9C /* ZhiFuBaoViewController.m in Sources */,
 				E7793A8D1862DA3E00D4BB1B /* MYBlurIntroductionView.m in Sources */,
 				E7793A931862DD7700D4BB1B /* SQCLoginViewController.m in Sources */,
+				E7802C7518675EBC00F39525 /* SVProgressHUD.m in Sources */,
 				E7793A541862D99700D4BB1B /* AppDelegate.m in Sources */,
 				E7793A8E1862DA3E00D4BB1B /* MYIntroductionPanel.m in Sources */,
 				E7793AAB1862EA9500D4BB1B /* NSString_RegEx.m in Sources */,
 				E7793A501862D99700D4BB1B /* main.m in Sources */,
 				E7793AC018642A1E00D4BB1B /* HuaFeiViewController.m in Sources */,
+				E7802CA11867625000F39525 /* UserInfo.m in Sources */,
 				E7793A881862DA3E00D4BB1B /* AMBlurView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,14 +666,20 @@
 		E7793A761862D99700D4BB1B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: sun qichao (7HXJEK73Z8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SQC/SQC-Prefix.pch";
 				INFOPLIST_FILE = "SQC/SQC-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/sunqichao/Desktop/Github/SQC/SQC/Library/YouMi_sdk_501/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "41162E6F-A8A2-4260-9001-B7D8E6B901BB";
+				PROVISIONING_PROFILE = "CCD24F28-A007-414B-8B55-FDCB06B57E74";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -552,14 +687,20 @@
 		E7793A771862D99700D4BB1B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: sun qichao (7HXJEK73Z8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SQC/SQC-Prefix.pch";
 				INFOPLIST_FILE = "SQC/SQC-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/sunqichao/Desktop/Github/SQC/SQC/Library/YouMi_sdk_501/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "41162E6F-A8A2-4260-9001-B7D8E6B901BB";
+				PROVISIONING_PROFILE = "CCD24F28-A007-414B-8B55-FDCB06B57E74";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -637,6 +778,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E7802C931867625000F39525 /* SQC.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E7802C941867625000F39525 /* SQC.xcdatamodel */,
+			);
+			currentVersion = E7802C941867625000F39525 /* SQC.xcdatamodel */;
+			path = SQC.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E7793A381862D99700D4BB1B /* Project object */;
 }

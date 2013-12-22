@@ -11,9 +11,11 @@
 @interface ZhiFuBaoViewController : UIViewController
 
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *zhifubaoButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *pointsButton;
 

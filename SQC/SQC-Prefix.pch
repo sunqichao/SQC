@@ -13,4 +13,9 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+    #import "SQCDefine.h"
+    #import "SVProgressHUD.h"
+    #import "YouMiWall.h"
+    #import "SQCAPI.h"
 #endif
