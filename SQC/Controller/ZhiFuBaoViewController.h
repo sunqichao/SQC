@@ -21,4 +21,13 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *yaoyiyao;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *moneyItems;
+
+@property (weak, nonatomic) IBOutlet UITextField *input;
+
+- (IBAction)rechargeZhiFuBao:(id)sender;
+
+- (IBAction)showWall:(id)sender;
+
+
 @end

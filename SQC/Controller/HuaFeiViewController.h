@@ -20,6 +20,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *moneyItems;
 
+@property (weak, nonatomic) IBOutlet UITextField *input;
+
+
+- (IBAction)exchangeHuaFei:(id)sender;
+
+- (IBAction)showWall:(id)sender;
 
 @end

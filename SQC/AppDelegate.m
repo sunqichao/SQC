@@ -7,24 +7,100 @@
 //
 
 #import "AppDelegate.h"
+#import "iRate.h"
+#import "Harpy.h"
+#import "MobClick.h"
 
 @implementation AppDelegate
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
++ (void)initialize
+{
+    /*
+     
+     评分
+     
+     */
+    //set the bundle ID. normally you wouldn't need to do this
+    //as it is picked up automatically from your Info.plist file
+    //but we want to test with an app that's actually on the store
+    [iRate sharedInstance].applicationBundleID = @"com.sunqichao.cancerprevention";
+	[iRate sharedInstance].onlyPromptIfLatestVersion = NO;
+    
+    //enable preview mode
+//    [iRate sharedInstance].previewMode = YES;
+    
+    
+    /*
+     
+     更新提醒
+     
+     */
+    // Set the App ID for your app
+    [[Harpy sharedInstance] setAppID:@"680445538"];
+    
+    // (Optional) Set the App Name for your app
+    [[Harpy sharedInstance] setAppName:@"捡话费"];
+    
+    /* (Optional) Set the Alert Type for your app
+     By default, the Singleton is initialized to HarpyAlertTypeOption */
+    [[Harpy sharedInstance] setAlertType:HarpyAlertTypeOption];
+    
+    /* (Optional) If your application is not availabe in the U.S. App Store, you must specify the two-letter
+     country code for the region in which your applicaiton is available. */
+    [[Harpy sharedInstance] setCountryCode:@"CN"];
+    
+    // Perform check for new version of your app
+//    [[Harpy sharedInstance] checkVersion];
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[NSUserDefaults standardUserDefaults] setObject:@"123" forKey:YaoYiYaoKey];
-    [[NSUserDefaults standardUserDefaults]synchronize];
+    //友盟统计    捡话费
+    [MobClick startWithAppkey:@"5290529956240b69e90b09b6"];
     
-    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:localPointsKey];
-    [[NSUserDefaults standardUserDefaults]synchronize];
+    //parse
+    [Parse setApplicationId:@"dKzzAStmB4uIAgBpsVWKwGPZIU66Xevl3hazYW6S"
+                  clientKey:@"GzWkPFvN4GvnqTlOv7pvyI7ccNreImxqDPlUf3Qs"];
+    
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
+     UIRemoteNotificationTypeAlert|
+     UIRemoteNotificationTypeSound];
+    
+    //有米广告
+    [YouMiConfig launchWithAppID:@"7264c157ae15ea82" appSecret:@"65cde82446211227"];
+    
+    [YouMiWall enable];
+    
+    [YouMiPointsManager enable];
+    
+    if (![CoreDataManager getCurrentUserName]) {
+        NSString *userName = [NSString stringWithFormat:@"小猪猪_%d",arc4random() % 900000];
+        [CoreDataManager setUserName:userName];
+        [SQCAPI signUpWithName:userName];
+    }
     
     // Override point for customization after application launch.
     return YES;
 }
-							
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -90,7 +166,7 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"WaterDaily" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"SQC" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }

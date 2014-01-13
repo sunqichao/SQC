@@ -85,7 +85,23 @@ const NSString* REG_PHONE = @"^(([0\\+]\\d{2,3}-?)?(0\\d{2,3})-?)?(\\d{7,8})";//
     return url;
 }
 
-
+//得到跟日历一样的日期
++ (NSDate *)getCurrentDate
+{
+    NSDate *date = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    //calendar是基于当前时区的，date是GMT，comps是返回date+8的当前时区的时间
+    NSDateComponents *comps = [calendar components:(NSYearCalendarUnit |
+                                                    NSMonthCalendarUnit |
+                                                    NSDayCalendarUnit |
+                                                    NSHourCalendarUnit |
+                                                    NSMinuteCalendarUnit |
+                                                    NSSecondCalendarUnit)
+                                          fromDate:date];
+    comps.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    
+    return [calendar dateFromComponents:comps];
+}
 
 /**
  返回字符串高度

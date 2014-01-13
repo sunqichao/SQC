@@ -2,8 +2,8 @@
 //  UserInfo.h
 //  SQC
 //
-//  Created by sunqichao on 13-12-22.
-//  Copyright (c) 2013年 sun qichao. All rights reserved.
+//  Created by sun qichao on 14-1-9.
+//  Copyright (c) 2014年 sun qichao. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -12,11 +12,14 @@
 
 @interface UserInfo : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * currentPoints;
-@property (nonatomic, retain) NSString * yaoyiyaoPoints;
-@property (nonatomic, retain) NSString * youmiPoints;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * signUP;
 @property (nonatomic, retain) NSString * totalChangeMoney;
 @property (nonatomic, retain) NSString * yaoyiyaoDate;
+@property (nonatomic, retain) NSString * yaoyiyaoPoints;
+@property (nonatomic, retain) NSString * youmiPoints;
+@property (nonatomic, retain) NSString * totalChangeMoneyHuafei;
+@property (nonatomic, retain) NSString * totalChangeMoneyZhiFuBao;
 
 @end

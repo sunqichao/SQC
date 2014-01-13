@@ -32,6 +32,8 @@
 //过滤掉&之类的符号
 +(NSString *)flattenHTMLSecond:(NSString *)html trimWhiteSpace:(BOOL)trim;
 
+//得到跟日历一样的日期
++ (NSDate *)getCurrentDate;
 
 /**
  返回字符串高度

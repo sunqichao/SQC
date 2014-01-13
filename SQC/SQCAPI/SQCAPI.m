@@ -8,6 +8,7 @@
 
 #import "SQCAPI.h"
 #import "UserInfo.h"
+#import "UIImage+ResizeAdditions.h"
 @implementation SQCAPI
 
 
@@ -26,246 +27,295 @@
 }
 
 
-#pragma mark - 获取当前积分
+#pragma mark - 注册 parse接口
 
-+ (NSString *)getCurrentPoints
++ (void)signUpWithName:(NSString *)name
 {
-    int youmi = [YouMiPointsManager pointsRemained];
+    PFUser *user = [PFUser user];
+    user.username = name;
+    user.password = @"123456";
     
-    int local = [[[NSUserDefaults standardUserDefaults]objectForKey:localPointsKey] intValue];
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"zhu ce cheng gong");
+            [CoreDataManager setSignUpSuccessed:@"ok"];
+        }else
+        {
+            NSLog(@"zhu ce shi bai error %@",error);
+        }
+        
+    }];
+
+}
+
+
+#pragma mark - 发送用户信息到服务端
+
++ (void)sendAllUserInfomations
+{
+    PFUser *user = [PFUser currentUser];
+    user[@"currentPoints"] = [CoreDataManager getCurrentPoints];
+    user[@"totalChangeMoney"] = [CoreDataManager getTotalMoney];
+    user[@"youmiPoints"] = [CoreDataManager getCurrentYouMiPoints];
+    user[@"yaoyiyaoDate"] = [CoreDataManager getCurrentYaoYiYaoPointsDate];
+    user[@"yaoyiyaoPoints"] = [CoreDataManager getCurrentYaoYiYaoPoints];
+    user[@"signUP"] = [CoreDataManager getSignUpSuccessed];
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"send all information succeed");
+        }else
+        {
+            NSLog(@"send all information faild");
+        }
+    }];
     
-    int total = youmi + local;
-    NSString *currentString = [NSString stringWithFormat:@"积分：%d",total];
-    
-    
-    return currentString;
+}
+
++ (void)sendHuafeiMoney:(int)money number:(NSString *)phoneNumber
+{
+    NSString *userName = [CoreDataManager getCurrentUserName];
+    NSString *moneystring = [NSString stringWithFormat:@"%d",money];
+    NSString *phone = phoneNumber;
+    NSString *currentPoints = [CoreDataManager getCurrentPoints];
+    NSString *yaoyiyaoPoints = [CoreDataManager getCurrentYaoYiYaoPoints] ;
+    NSString *youmiPoints = [CoreDataManager getCurrentYouMiPoints] ;
+    PFObject *huafei = [PFObject objectWithClassName:@"HuaFei"];
+    huafei[@"phone"] = phone;
+    huafei[@"money"] = moneystring;
+    huafei[@"userName"] = userName;
+    huafei[@"currentPoints"] = currentPoints;
+    huafei[@"yaoyiyaoPoints"] = yaoyiyaoPoints;
+    huafei[@"youmiPoints"] = youmiPoints;
+    huafei[@"isOK"] = @"处理中";
+    huafei[@"users"] = [PFUser currentUser];
+    [huafei saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"succeed");
+            int spend = money*exchangepointsToMoney;    //算出消费的积分
+            
+            //消费有米的积分   不足积分的时候
+            if (![YouMiPointsManager spendPoints:spend]) {
+                int youmi = [[CoreDataManager getCurrentYouMiPoints] intValue];
+                int yaoyiyao = [[CoreDataManager getCurrentPoints] intValue]-youmi;
+                [CoreDataManager spendYaoYiYaoPoints:[NSString stringWithFormat:@"%d",yaoyiyao]];
+            }
+            
+            [CoreDataManager setTotalMoney:moneystring];         //累计兑换的钱数到coredata
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPoints" object:nil userInfo:nil];
+           
+            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"消费%D积分", spend] duration:2.0f];
+            
+            
+        }else
+        {
+            NSLog(@"%@",error);
+        }
+    }];
+}
+
++ (void)sendZhifubaoMoney:(int)money account:(NSString *)account
+{
+    NSString *userName = [CoreDataManager getCurrentUserName];
+    NSString *moneystring = [NSString stringWithFormat:@"%d",money];
+    NSString *zhifubao = account;
+    NSString *currentPoints = [NSString stringWithFormat:@"%@",[CoreDataManager getCurrentPoints]];
+    NSString *yaoyiyaoPoints = [CoreDataManager getCurrentYaoYiYaoPoints] ;
+    NSString *youmiPoints = [CoreDataManager getCurrentYouMiPoints] ;
+    PFObject *huafei = [PFObject objectWithClassName:@"ZhiFuBao"];
+    huafei[@"zhiFuBao"] = zhifubao;
+    huafei[@"money"] = moneystring;
+    huafei[@"userName"] = userName;
+    huafei[@"currentPoints"] = currentPoints;
+    huafei[@"yaoyiyaoPoints"] = yaoyiyaoPoints;
+    huafei[@"youmiPoints"] = youmiPoints;
+    huafei[@"isOK"] = @"处理中";
+    huafei[@"users"] = [PFUser currentUser];
+    [huafei saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"succeed");
+            int spend = money*exchangepointsToMoney;    //算出消费的积分
+            
+            //消费有米的积分   不足积分的时候
+            if (![YouMiPointsManager spendPoints:spend]) {
+                int youmi = [[CoreDataManager getCurrentYouMiPoints] intValue];
+                int yaoyiyao = [[CoreDataManager getCurrentPoints] intValue]-youmi;
+                [CoreDataManager spendYaoYiYaoPoints:[NSString stringWithFormat:@"%d",yaoyiyao]];
+            }
+            
+            [CoreDataManager setTotalMoney:moneystring];         //累计兑换的钱数到coredata
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPoints" object:nil userInfo:nil];
+            
+            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"消费%D积分", spend] duration:2.0f];
+
+        }else
+        {
+            NSLog(@"%@",error);
+        }
+    }];
     
 }
 
 
-+ (id)getCurrentUserEntity
+#pragma mark - 判断当前积分是否达到兑换标准
+
++ (BOOL)isEnoughPointsWith:(int)money
 {
-    NSManagedObjectContext *context = [SQC_appdelegate managedObjectContext];
-    NSError *error;
+    BOOL isEnough = NO;
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"UserInfo"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
+    int targetPoints = money*exchangepointsToMoney;
     
+    int currentPoints = [[CoreDataManager getCurrentPoints] intValue];
     
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    if ([fetchedObjects count]==0) {
-        
-        NSLog(@"no UserInfo entity.");
-        
+    if (targetPoints<currentPoints) {
+        isEnough = YES;
+    }
+    
+    return isEnough;
+}
+
+#pragma mark - 获取摇一摇积分
+
++ (NSString *)getYaoYiYaoPoints
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"Setting"];
+    
+    NSArray *setting = [query findObjects];
+    
+    PFObject *object = [setting objectAtIndex:0];
+    
+    NSString *points;
+    
+    if (object[@"yaoyiyaoPoints"]) {
+       points = [NSString stringWithFormat:@"%@",object[@"yaoyiyaoPoints"]];
+
     }else
     {
-        
-        return fetchedObjects;
+        points = @"10";
     }
     
-    return nil;
-    
+    return points;
 }
 
-#pragma mark - 设置用户名称
+#pragma mark - 设置和获取用户头像
 
-+ (void)setUserName:(NSString *)namestr
++ (void)setUserHeaderImage:(UIImage *)header
 {
-    BOOL isSuccess = YES;
-    NSManagedObjectContext *context = [SQC_appdelegate managedObjectContext];
-    id userData = [self getCurrentUserEntity];
-    if (userData) {
-        NSArray *array = (NSArray *)userData;
-        UserInfo *infos = [array objectAtIndex:0];
-        infos.name = namestr;
-        
-        NSError *error;
-        if (![context save:&error]) {
-            isSuccess = NO;
-            
-        }else{
-            isSuccess = YES;
-            
-        }
+    UIImage *image = (UIImage *)header;
+    
+    UIImage *mediumImage = [image thumbnailImage:280 transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationHigh];
+    
+    NSData *mediumImageData = UIImageJPEGRepresentation(mediumImage, 0.5); // using JPEG for larger pictures
+    
+    if (mediumImageData.length > 0) {
+        NSLog(@"Uploading Medium Profile Picture");
+        PFFile *fileMediumImage = [PFFile fileWithData:mediumImageData];
+        [fileMediumImage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                NSLog(@"Uploaded Medium Profile Picture");
+                [[PFUser currentUser] setObject:fileMediumImage forKey:kPAPUserProfilePicMediumKey];
+                [[PFUser currentUser] saveEventually];
+                
+            }
+        }];
+    }
+}
 
++ (UIImage *)getCurrentUserHeaderImage
+{
+    PFFile *imageFile = [[PFUser currentUser] objectForKey:kPAPUserProfilePicMediumKey];
+    UIImage *image = [UIImage imageWithData:[imageFile getData]];
+    if (image) {
+        return image;
     }else
     {
-        UserInfo *user = [NSEntityDescription
-                          insertNewObjectForEntityForName:@"UserInfo"
-                          inManagedObjectContext:context];
-        user.name = namestr;
-        NSError *error;
-        if (![context save:&error]) {
-            isSuccess = NO;
+        return [UIImage imageNamed:defaultImage];
+    }
+}
+
+
+
++ (void)sendFeedbackInfo:(NSString *)content withBlock:(feedbackDone)block;
+{
+    PFObject *huafei = [PFObject objectWithClassName:@"FeedBack"];
+    huafei[@"content"] = [NSString stringWithFormat:@"%@",content];
+
+    huafei[@"users"] = [PFUser currentUser];
+    [huafei saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
             
-        }else{
-            isSuccess = YES;
+            block(succeeded);
             
+            
+        }else
+        {
+            NSLog(@"%@",error);
         }
-    }
+    }];
+
     
 }
 
 
-#pragma mark - 获取用户名称
-
-+ (NSString *)getCurrentUserName
++ (NSArray *)getFengYunData
 {
-    NSArray *array = [self getCurrentUserEntity];
-    if (array) {
-        UserInfo *infos = [array objectAtIndex:0];
-        NSString *name = [NSString stringWithFormat:@"%@",infos.name];
-        return name;
-    }
-   
-    return nil;
+    PFQuery *query = [PFQuery queryWithClassName:@"FengYunBang"];
+    
+    //每页最多信息数
+    query.limit = 100;
+    
+    //按时间排序
+    [query orderByDescending:@"currentPoints"];
+    
+    return [query findObjects];
+    
 }
 
-
-
-
-#pragma mark - 设置摇一摇积分
-
-+ (void)setYaoYiYaoPoints:(NSString *)points
++ (NSArray *)getChargeList
 {
-
-    NSManagedObjectContext *context = [SQC_appdelegate managedObjectContext];
-    NSArray *array = [self getCurrentUserEntity];
-    UserInfo *infos = [array objectAtIndex:0];
-    infos.yaoyiyaoPoints = points;
+    NSMutableArray *results = [NSMutableArray array];
     
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"设置摇一摇积分，错误  %@",error);
-        
-    }else{
-        NSLog(@"设置摇一摇积分成功");
-        
-    }
-
-
+    PFQuery *queryHuaFei = [PFQuery queryWithClassName:@"HuaFei"];
+    [queryHuaFei whereKey:@"users" equalTo:[PFUser currentUser]];
+    [queryHuaFei orderByAscending:@"createAt"];
+    NSArray *tempHuafei = [queryHuaFei findObjects];
+    
+    PFQuery *queryZhiFuBao = [PFQuery queryWithClassName:@"ZhiFuBao"];
+    [queryZhiFuBao whereKey:@"users" equalTo:[PFUser currentUser]];
+    [queryZhiFuBao orderByAscending:@"createAt"];
+    NSArray *tempZhiFuBao = [queryZhiFuBao findObjects];
+    
+    [results addObjectsFromArray:tempHuafei];
+    [results addObjectsFromArray:tempZhiFuBao];
+    
+    return results;
 }
 
-+ (NSString *)getCurrentYaoYiYaoPoints
++ (NSArray *)getGongLueList
 {
-    NSArray *array = [self getCurrentUserEntity];
-    if (array) {
-        UserInfo *infos = [array objectAtIndex:0];
-        NSString *yaoyiyaoPoints = [NSString stringWithFormat:@"%@",infos.yaoyiyaoPoints];
-        return yaoyiyaoPoints;
-    }
+    PFQuery *query = [PFQuery queryWithClassName:@"GongLue"];
     
-    return nil;
+    //每页最多信息数
+    query.limit = 100;
     
+    //按时间排序
+    [query orderByDescending:@"currentPoints"];
+    
+    return [query findObjects];
 }
 
-#pragma mark - 设置摇一摇积分的时间 一天只能摇一次
-
-+ (void)setYaoYiYaoPointsDate:(NSString *)date
++ (NSArray *)getHelpList
 {
-    NSManagedObjectContext *context = [SQC_appdelegate managedObjectContext];
-    NSArray *array = [self getCurrentUserEntity];
-    UserInfo *infos = [array objectAtIndex:0];
-    infos.yaoyiyaoDate = date;
+    PFQuery *query = [PFQuery queryWithClassName:@"HelpLists"];
     
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"设置摇一摇积分的时间，错误  %@",error);
-        
-    }else{
-        NSLog(@"设置摇一摇积分的时间成功");
-        
-    }
+    //每页最多信息数
+    query.limit = 100;
+    
+    //按时间排序
+    [query orderByDescending:@"currentPoints"];
+    
+    return [query findObjects];
     
 }
-
-+ (NSString *)getCurrentYaoYiYaoPointsDate
-{
-    NSArray *array = [self getCurrentUserEntity];
-    if (array) {
-        UserInfo *infos = [array objectAtIndex:0];
-        NSString *yaoyiyaoDate = [NSString stringWithFormat:@"%@",infos.yaoyiyaoDate];
-        return yaoyiyaoDate;
-    }
-    
-    return nil;
-
-}
-
-
-#pragma mark - 设置有米积分
-
-+ (void)setYouMiPoints:(NSString *)points
-{
-    NSManagedObjectContext *context = [SQC_appdelegate managedObjectContext];
-    NSArray *array = [self getCurrentUserEntity];
-    UserInfo *infos = [array objectAtIndex:0];
-    infos.youmiPoints = points;
-    
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"设置有米积分的时间，错误  %@",error);
-        
-    }else{
-        NSLog(@"设置有米积分的时间成功");
-        
-    }
-    
-}
-
-+ (NSString *)getCurrentYouMiPoints
-{
-    NSArray *array = [self getCurrentUserEntity];
-    if (array) {
-        UserInfo *infos = [array objectAtIndex:0];
-        NSString *youmiPoints = [NSString stringWithFormat:@"%@",infos.youmiPoints];
-        return youmiPoints;
-    }
-    
-    return nil;
-}
-
-
-#pragma mark - 设置有米积分
-
-+ (void)setTotalMoney:(NSString *)money
-{
-    NSManagedObjectContext *context = [SQC_appdelegate managedObjectContext];
-    NSArray *array = [self getCurrentUserEntity];
-    UserInfo *infos = [array objectAtIndex:0];
-    infos.totalChangeMoney = money;
-    
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"设置所有兑换的钱数，错误  %@",error);
-        
-    }else{
-        NSLog(@"设置所有兑换的钱数");
-        
-    }
-
-}
-
-
-+ (NSString *)getTotalMoney
-{
-    NSArray *array = [self getCurrentUserEntity];
-    if (array) {
-        UserInfo *infos = [array objectAtIndex:0];
-        NSString *totalChangeMoney = [NSString stringWithFormat:@"%@",infos.totalChangeMoney];
-        return totalChangeMoney;
-    }
-    
-    return nil;
-
-}
-
-
-
-
-
 
 
 

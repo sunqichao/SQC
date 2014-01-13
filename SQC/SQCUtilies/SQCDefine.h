@@ -10,6 +10,10 @@
 #define SQC_SQCDefine_h
 
 #import "AppDelegate.h"
+#import "CoreDataManager.h"
+#define settingCornerRadius 40.0f
+
+#define defaultImage @"zhifubaoBack.jpg"
 
 #define refreshBackgroundColor [UIColor colorWithRed:94.0f/255.0f green:103.0f/255.0f blue:122.0f/255.0f alpha:1.0f]
 
@@ -24,9 +28,8 @@
 
 #define MangGuoAppKey @"143503981a9b4ce4851f65a45f704271"       //芒果广告的ID
 
-#define YaoYiYaoKey @"yaoguole"     //取出判断摇一摇是否摇过的key
 
-#define localPointsKey @"loaclPoints"       //本地获取的积分
+#define exchangepointsToMoney 300           //测试时设置为1   测试完成后改回300
 
 /**
  
@@ -56,13 +59,21 @@
 
 #define jiazaiwanchengyaoxianshide @"好了，看吧，男淫。。。"   //SQCViewController 里用的
 
-#define yaoyiyaoAlertMessage @"亲爱的，你已经获取5个积分，坚持哦。"      //摇一摇用到的提示语
+#define yaoyiyaoAlertMessage @"亲爱的，你已经获取%@个积分，坚持哦。"      //摇一摇用到的提示语
 
 #define yaoyiyaoAlertMessageFailed @"亲爱的，你已经今天摇过了，明天再来吧。"      //摇一摇用到的提示语
+
+#define rechargeSuccess @"亲，话费充值进行中，最晚第二天到账。"      //充值成功的提示语
+
+#define pointsNotEnough @"亲，你的积分不够哦，赶快去挣积分吧!"      //积分不够的提示语
+
+#define FengyunKeyName @"userName"
+
+#define FengyunKeyPoints @"currentPoints"
 
 typedef void (^writeArticleFinished)(id writedata,BOOL isRight);
 typedef void (^readArticleFinished)(id readdata,BOOL isRight);
 
-
+typedef void (^feedbackDone)(BOOL isRight);
 
 #endif

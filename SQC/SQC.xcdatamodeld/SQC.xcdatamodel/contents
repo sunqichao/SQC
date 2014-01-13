@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
         <attribute name="currentPoints" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="signUP" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="totalChangeMoney" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalChangeMoneyHuafei" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalChangeMoneyZhiFuBao" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="yaoyiyaoDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="yaoyiyaoPoints" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="youmiPoints" optional="YES" attributeType="String" syncable="YES"/>

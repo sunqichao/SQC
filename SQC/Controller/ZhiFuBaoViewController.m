@@ -27,14 +27,33 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.zhifubaoButton.layer.cornerRadius = 40.f;
+    self.zhifubaoButton.layer.cornerRadius = 65.f;
     
-    self.pointsButton.layer.cornerRadius = 40.f;
+    self.pointsButton.layer.cornerRadius = 65.f;
     
-    self.yaoyiyao.layer.cornerRadius = 35.f;
+    self.yaoyiyao.layer.cornerRadius = 27.f;
 
-    self.pointsLabel.text = [SQCAPI getCurrentPoints];
+    [self addUpdateViewsNotification];
 
+    UITapGestureRecognizer *pan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:pan];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(youmipointsGotted:) name:kYouMiPointsManagerRecivedPointsNotification object:nil];
+
+}
+- (void)dismissKeyboard:(UIPanGestureRecognizer *)sender
+{
+    [_input resignFirstResponder];
+    
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.nameLabel.text = [CoreDataManager getCurrentUserName];
+    self.pointsLabel.text = [CoreDataManager getCurrentPoints];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,6 +62,53 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 充值成功后 刷新分数
+
+- (void)addUpdateViewsNotification
+{
+    
+    
+    [NSNotificationCenter.defaultCenter addObserverForName:@"refreshPoints"
+                                                    object:nil
+                                                     queue:nil
+                                                usingBlock:^(NSNotification *note)
+     {
+         NSLog(@"refreshPoints ********");
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             self.pointsLabel.text = [CoreDataManager getCurrentPoints];
+             [SQCAPI sendAllUserInfomations];
+             [self performSelector:@selector(successWithMoney) withObject:nil afterDelay:2.0];
+         });
+         
+         
+     }];
+    
+    //    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPoints" object:nil];
+}
+- (void)successWithMoney
+{
+    [SVProgressHUD showSuccessWithStatus:rechargeSuccess duration:3.0f];
+    
+}
+
+#pragma mark - 得到有米积分的提示
+
+- (void)youmipointsGotted:(NSNotification *)notification {
+    
+    NSDictionary *dict = [notification userInfo];
+    NSNumber *freshPoints = [dict objectForKey:kYouMiPointsManagerFreshPointsKey];
+    // freshPoints的积分不应该拿来使用,积分已经被YouMiSDK保存了, 只是用于告知一下用户, 可以通过 [YouMiPointsManager spendPoints:]来使用积分。
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"通知" message:[NSString stringWithFormat:@"获得%@个小积分", freshPoints] delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil];
+    [alert show];
+    
+    _pointsLabel.text = [NSString stringWithFormat:@"积分：%@",[CoreDataManager getCurrentPoints]];
+
+}
+
+
+#pragma mark - 摇一摇
+
 - (void) motionBegan:(UIEventSubtype)motion
            withEvent:(UIEvent*)event
 {
@@ -50,11 +116,9 @@
     //检测到摇动
     NSLog(@"yao");
     
-    NSString *yaoyiyaotime = [[NSUserDefaults standardUserDefaults] objectForKey:YaoYiYaoKey];
+    NSString *yaoyiyaotime = [CoreDataManager getCurrentYaoYiYaoPointsDate];
     
-    NSDate *date = [NSDate date];
-    
-    NSString *dateString = [date description];
+    NSString *dateString = [[SQC_StringUtility getCurrentDate] description];
     
     NSRange rangeSpace = [dateString rangeOfString:@" "];
     
@@ -66,20 +130,18 @@
     
     if (![day isEqualToString:yaoyiyaotime]) {
         NSLog(@"yao yi yao");
-        [SVProgressHUD showSuccessWithStatus:yaoyiyaoAlertMessage duration:2.0f];
+        NSString *yaoyiyaopoints = [SQCAPI getYaoYiYaoPoints];
+
+        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:yaoyiyaoAlertMessage,yaoyiyaopoints] duration:2.0f];
         
-        int loacl = [[[NSUserDefaults standardUserDefaults] objectForKey:localPointsKey] intValue];
-        loacl+=10;
+        //设置摇一摇的最后更新时间
+        [CoreDataManager setYaoYiYaoPointsDate:day];
         
-        
-        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d",loacl] forKey:localPointsKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        [[NSUserDefaults standardUserDefaults] setObject:day forKey:YaoYiYaoKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        //设置摇一摇的分数
+        [CoreDataManager setYaoYiYaoPoints:yaoyiyaopoints];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            _pointsLabel.text = [SQCAPI getCurrentPoints];
+            _pointsLabel.text = [NSString stringWithFormat:@"%@",[CoreDataManager getCurrentPoints]];
             
         });
         
@@ -92,5 +154,35 @@
     
 }
 
+#pragma mark - 发送支付宝充值
 
+- (IBAction)rechargeZhiFuBao:(id)sender {
+    //检查积分是否大于充值金额
+    if ([SQCAPI isEnoughPointsWith:(_moneyItems.selectedSegmentIndex+1)*10]) {
+        
+        //判断手机号是否正确
+        if (_input.text.length>3) {
+            
+            [_input resignFirstResponder];
+            
+            [SQCAPI sendZhifubaoMoney:(_moneyItems.selectedSegmentIndex+1)*10 account:_input.text];
+            
+        }else
+        {
+            [SVProgressHUD showSuccessWithStatus:@"亲，请输入正确的支付宝帐号" duration:2.0f];
+            
+        }
+        
+    }else
+    {
+        [SVProgressHUD showSuccessWithStatus:pointsNotEnough duration:2.0f];
+    }
+    
+}
+
+- (IBAction)showWall:(id)sender {
+    
+    [SQCAPI showPointsWall];
+    
+}
 @end

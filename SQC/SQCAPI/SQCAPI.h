@@ -17,6 +17,8 @@
 
 ///////////
 
+
+
 /*
  显示积分墙
  
@@ -24,87 +26,91 @@
 
 + (void)showPointsWall;
 
+/*
+ 
+ 获取今天摇一摇的积分
+
+ */
++ (NSString *)getYaoYiYaoPoints;
 
 /*
- 获取当前积分
+ 
+ 注册
  
  */
-
-+ (NSString *)getCurrentPoints;
-
-
++ (void)signUpWithName:(NSString *)name;
 
 /*
- 设置用户名
+ 
+ 发送用户的积分，兑换金额，等等信息到服务端
  
  */
-
-+ (void)setUserName:(NSString *)namestr;
-
-
-
-/*
- 获取当前用户名
- 
- */
-
-+ (NSString *)getCurrentUserName;
-
-+ (id)getCurrentUserEntity;
++ (void)sendAllUserInfomations;
 
 
 /*
- 设置摇一摇积分
+ 
+ 发送一条充话费的记录
  
  */
++ (void)sendHuafeiMoney:(int)money number:(NSString *)phoneNumber;
 
-+ (void)setYaoYiYaoPoints:(NSString *)points;
-
-+ (NSString *)getCurrentYaoYiYaoPoints;
-
+/*
+ 
+ 发送一条支付宝充值的记录
+ 
+ */
++ (void)sendZhifubaoMoney:(int)money account:(NSString *)account;
 
 
 /*
- 设置摇一摇的时间
+ 判断积分是否达到标准
  
  */
 
-+ (void)setYaoYiYaoPointsDate:(NSString *)date;
-
-+ (NSString *)getCurrentYaoYiYaoPointsDate;
-
++ (BOOL)isEnoughPointsWith:(int)money;
 
 
 /*
- 设置有米的积分
+ 设置用户头像
  
  */
++ (void)setUserHeaderImage:(UIImage *)image;
 
-+ (void)setYouMiPoints:(NSString *)points;
-
-+ (NSString *)getCurrentYouMiPoints;
-
-
++ (UIImage *)getCurrentUserHeaderImage;
 
 
 
 /*
- 设置所有兑换的钱数
+ 发送反馈信息到服务器
  
  */
-
-+ (void)setTotalMoney:(NSString *)money;
-
-+ (NSString *)getTotalMoney;
++ (void)sendFeedbackInfo:(NSString *)content withBlock:(feedbackDone)block;
 
 
+/*
+ 获取风云榜信息
+ 
+ */
++ (NSArray *)getFengYunData;
 
+/*
+ 获取兑换纪录（包括兑换状态)
+ */
 
++ (NSArray *)getChargeList;
 
+/*
+ 获取攻略列表
+ */
 
++ (NSArray *)getGongLueList;
 
+/*
+ 获取帮助列表
+ */
 
-
++ (NSArray *)getHelpList;
 
 
 
