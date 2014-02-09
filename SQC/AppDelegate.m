@@ -71,8 +71,10 @@
      UIRemoteNotificationTypeSound];
     
     //有米广告
-    [YouMiConfig launchWithAppID:@"7264c157ae15ea82" appSecret:@"65cde82446211227"];
+//    [YouMiConfig launchWithAppID:@"7264c157ae15ea82" appSecret:@"65cde82446211227"];
     
+    [YouMiConfig launchWithAppID:@"cfa5314eac0cb7e6" appSecret:@"b3285af19d5a85d3"];
+
     [YouMiWall enable];
     
     [YouMiPointsManager enable];
